@@ -4,12 +4,11 @@
             {{ __("Products") }}
         </h2>
 
+        <span>&nbsp;</span>
         <div class="">
-            <a
-                href="{{ route('products.create') }}"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            >
-                Tambah Kategori
+            <a href="{{ route('products.create') }}"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Tambah Product
             </a>
         </div>
     </x-slot>
@@ -22,31 +21,20 @@
                         <thead>
                             <tr>
                                 <!-- <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 ">Id</th> -->
-                                <th
-                                    class="border-b font-medium p-4 pl-8 pt-0 pb-3"
-                                >
+                                <th class="border-b font-medium p-4 pl-8 pt-0 pb-3">
                                     Nama
                                 </th>
-                                <th
-                                    class="border-b font-medium p-4 pl-8 pt-0 pb-3"
-                                >
+                                <th class="border-b font-medium p-4 pl-8 pt-0 pb-3">
                                     Harga
                                 </th>
-                                <th
-                                    class="border-b font-medium p-4 pl-8 pt-0 pb-3"
-                                >
+                                <th class="border-b font-medium p-4 pl-8 pt-0 pb-3">
                                     Kategori
                                 </th>
-                                <th
-                                    class="border-b font-medium p-4 pl-8 pt-0 pb-3"
-                                >
+                                <th class="border-b font-medium p-4 pl-8 pt-0 pb-3">
                                     Slug
                                 </th>
-                                <th
-                                    class="border-b font-medium p-4 pl-8 pt-0 pb-3"
-                                >
-                                    Aksi
-                                </th>
+                                <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 " width="8%">Edit</th>
+                                <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 " width="8%">Hapus</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -67,22 +55,17 @@
                                     {{$item->slug}}
                                 </td>
                                 <td class="border-b border-slate-100 p-4 pl-8">
-                                    <a
-                                        href="{{ route('products.edit', $item->id) }}"
-                                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                    >
+                                    <a href="{{ route('products.edit', $item->id) }}"
+                                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                         Edit
                                     </a>
-                                    <span>&nbsp;</span>
-                                    <form
-                                        action="{{ route('products.destroy', $item->id)}}"
-                                        method="post"
-                                        class="d-inline"
-                                    >
+                                </td>
+                                <td class="border-b border-slate-100 p-4 pl-8">
+                                    <form action="{{ route('products.destroy', $item->id)}}" method="post"
+                                        class="d-inline">
                                         @csrf @method('delete')
                                         <button
-                                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                                        >
+                                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                                             Hapus
                                         </button>
                                     </form>
