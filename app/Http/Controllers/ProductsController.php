@@ -56,6 +56,7 @@ class ProductsController extends Controller
         $data['slug'] = Str::slug($request->name);
 
         Products::create($data);
+        toast('Data produk berhasil ditambahkan', 'success');
         return redirect()->route('products.index');
     }
 
@@ -101,8 +102,9 @@ class ProductsController extends Controller
 
         $data['slug'] = Str::slug($request->name);
 
-        $item = Products::findOrFail($id);
-        $item->update($data);
+        Products::find($id)->update($data);
+        
+        toast('Data produk berhasil diperbarui', 'success');
 
         return redirect()->route('products.index');
     }
@@ -115,11 +117,9 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        $item = Products::findOrFail($id);
-
-        $item->delete();
-
-        Products::where('category_id', $id)->delete();
+        Products::find($id)->delete();
+        
+        toast('Data produk berhasil dihapus', 'success');
 
         return redirect()->route('products.index');
     }

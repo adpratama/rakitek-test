@@ -78,6 +78,9 @@ class CategoriesController extends Controller
         $data['slug'] = Str::slug($request->name);
 
         Categories::create($data);
+        
+        toast('Kategori berhasil ditambahkan ', 'success');
+
         return redirect()->route('categories.index');
     }
 
@@ -120,8 +123,9 @@ class CategoriesController extends Controller
 
         $data['slug'] = Str::slug($request->name);
 
-        $item = Categories::findOrFail($id);
-        $item->update($data);
+        Categories::findOrFail($id)->update($data);
+        
+        toast('Kategori berhasil diperbarui', 'success');
 
         return redirect()->route('categories.index');
     }
@@ -134,12 +138,12 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        $item = Categories::findOrFail($id);
-
-        $item->delete();
+        Categories::find($id)->delete();
 
         Products::where('category_id', $id)->delete();
+        
+        toast('Kategori berhasil dihapus', 'success');
 
-        return redirect()->route('categories.index');
+        return back();
     }
 }

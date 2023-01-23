@@ -11,6 +11,8 @@
                 Tambah Kategori
             </a>
         </div>
+
+        @include('sweetalert::alert')
     </x-slot>
 
     <div class="py-12">

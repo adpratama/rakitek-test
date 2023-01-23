@@ -11,6 +11,8 @@
                 Tambah Product
             </a>
         </div>
+
+        @include('sweetalert::alert')
     </x-slot>
 
     <div class="py-12">
@@ -63,7 +65,8 @@
                                 <td class="border-b border-slate-100 p-4 pl-8">
                                     <form action="{{ route('products.destroy', $item->id)}}" method="post"
                                         class="d-inline">
-                                        @csrf @method('delete')
+                                        @csrf
+                                        @method('delete')
                                         <button
                                             class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                                             Hapus
